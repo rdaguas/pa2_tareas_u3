@@ -7,7 +7,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import com.example.demo.repository.modelo.Alumno;
 import com.example.demo.repository.modelo.Ciudadano;
+import com.example.demo.service.IAlumnoService;
 import com.example.demo.service.ICiudadanoService;
 import com.example.demo.service.IHotelService;
 
@@ -20,6 +22,9 @@ public class Pa2TareasU3Application implements CommandLineRunner {
 	@Autowired
 	private ICiudadanoService ciudadanoService;
 
+	@Autowired
+	private IAlumnoService alumnoService;
+
 	public static void main(String[] args) {
 		SpringApplication.run(Pa2TareasU3Application.class, args);
 	}
@@ -28,8 +33,7 @@ public class Pa2TareasU3Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
 
-		// List<Hotel>listaHotel;
-		// this.hotelService.buscarInnerJoin().stream().forEach(System.out::println);
+		// Primeros 5, con Ciudadanos
 		List<Ciudadano> listaCiudadanos;
 		System.out.println("----------------------------- INNER JOIN --------------------------------");
 		this.ciudadanoService.buscarInnerJoin().stream().forEach(System.out::println);
@@ -44,6 +48,22 @@ public class Pa2TareasU3Application implements CommandLineRunner {
 
 		System.out.println("--------------------------------- WHERE JOIN ---------------------------------");
 		this.ciudadanoService.buscarWhereJoin().stream().forEach(System.out::println);
+
+		//  5 seguientes, Alumnos
+		List<Alumno> listaAlumnos;
+		System.out.println("----------------------------- INNER JOIN --------------------------------");
+		this.alumnoService.buscarInnerJoin().stream().forEach(System.out::println);
+		System.out.println("--------------------------------- RIGHT OUTER JOIN ---------------------------------");
+		this.alumnoService.buscarOuterRightJoin().stream().forEach(System.out::println);
+
+		System.out.println("--------------------------------- LEFT OUTER JOIN ---------------------------------");
+		this.alumnoService.buscarOuterLeftJoin().stream().forEach(System.out::println);
+
+		System.out.println("--------------------------------- FULL OUTER JOIN ---------------------------------");
+		this.alumnoService.buscarOuterFullJoin().stream().forEach(System.out::println);
+
+		System.out.println("--------------------------------- WHERE JOIN ---------------------------------");
+		this.alumnoService.buscarWhereJoin().stream().forEach(System.out::println);
 	}
 
 }
