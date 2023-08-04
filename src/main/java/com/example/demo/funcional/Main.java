@@ -124,7 +124,7 @@ public class Main {
 		highOrder.metodo(() -> "1724340391HO");
 
 		// 3. Metodos Referenciados
-		highOrder.metodo(metodosReferenciados::getIdHO);
+		highOrder.metodo(MetodosReferenciados::getIdHO);
 
 		// Consumer
 		// Clase
@@ -135,56 +135,124 @@ public class Main {
 
 		MetodosHighOrder.metodoConsumer(MetodosReferenciados::aceptar, "Metodos Referenciados Consumer");
 
-		// Interfaces Funcionales JAVA
-		// 1. SUPPLER
+//		// Interfaces Funcionales JAVA
+//		// 1. SUPPLER
+//
+//		// Supplier
+//		Stream<String> lista = Stream.generate(() -> "1724340391HO").limit(20);
+//		lista.forEach(cadena -> LOG.info(cadena));
+//
+//		// 2. CONSUMER
+//
+//		List<Integer> listaNumeros = Arrays.asList(1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
+//		listaNumeros.forEach(cadena -> {
+//
+//			LOG.info("" + cadena);
+//		});
+//
+//		// 3. PREDICATE
+//		Stream<Integer> listaFinal = listaNumeros.stream().filter(numero -> numero >= 5);
+//		listaFinal.forEach(numero -> LOG.info("Valor: " + numero));
+//
+//		// 4. FUNCTION
+//		Stream<String> listaCambiada = listaNumeros.stream().map(numero -> {
+//			Integer num = 10;
+//			num = numero * num;
+//			return "N:" + num;
+//		});
+//		listaCambiada.forEach(cadena -> LOG.info(cadena));
+//
 
-		// Supplier
-		Stream<String> lista = Stream.generate(() -> "1724340391HO").limit(20);
-		lista.forEach(cadena -> LOG.info(cadena));
-
-		// 2. CONSUMER
-
-		List<Integer> listaNumeros = Arrays.asList(1, 2, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
-		listaNumeros.forEach(cadena -> {
-
-			LOG.info("" + cadena);
-		});
-
-		// 3. PREDICATE
-		Stream<Integer> listaFinal = listaNumeros.stream().filter(numero -> numero >= 5);
-		listaFinal.forEach(numero -> LOG.info("Valor: " + numero));
-
-		// 4. FUNCTION
-		Stream<String> listaCambiada = listaNumeros.stream().map(numero -> {
-			Integer num = 10;
-			num = numero * num;
-			return "N:" + num;
-		});
-		listaCambiada.forEach(cadena -> LOG.info(cadena));
-
-		// 5. UNARYOPERATOR
-
-		Stream<Integer> listaCambiada2 = listaNumeros.stream().map(numero -> {
-			Integer num = 10;
-			num = numero + num;
-			return num;
-		});
-		listaCambiada2.forEach(cadena -> LOG.info(cadena.toString()));
+		//		// 5. UNARYOPERATOR
+//
+//		Stream<Integer> listaCambiada2 = listaNumeros.stream().map(numero -> {
+//			Integer num = 10;
+//			num = numero + num;
+//			return num;
+//		});
+//		listaCambiada2.forEach(cadena -> LOG.info(cadena.toString()));
 
 		// metodos referenciados
-		LOG.info("TAREA 16");
+		//LOG.info("TAREA 16");
 		// 1. supllier
-		
-		MetodosHighOrder.metodo(metodosReferenciados::getIdHO);
-		// 2.Consumer
-		MetodosHighOrder.metodoConsumer(MetodosReferenciados::aceptar, "Metodo Consumer");
-		// 3.Predicate
-		MetodosHighOrder.metodoPredicate(MetodosReferenciados::evaluar, 5);
-		// 4.Function
-		MetodosHighOrder.metodoFunction(MetodosReferenciados::aplicar, 4);
-		// 5.UnaryOperator
-		MetodosHighOrder.metodoUnary(MetodosReferenciados::aplicar, 6.8);
 
+//		MetodosHighOrder.metodo(metodosReferenciados::getIdHO);
+//		// 2.Consumer
+//		MetodosHighOrder.metodoConsumer(MetodosReferenciados::aceptar, "Metodo Consumer");
+//		// 3.Predicate
+//		MetodosHighOrder.metodoPredicate(MetodosReferenciados::evaluar, 5);
+//		// 4.Function
+//		MetodosHighOrder.metodoFunction(MetodosReferenciados::aplicar, 4);
+//		// 5.UnaryOperator
+//		MetodosHighOrder.metodoUnary(MetodosReferenciados::aplicar, 6.8);
+		
+		LOG.info("**************************TAREA 17********************************");
+		//metodos referenciados 
+		//1. supllier
+		
+		// 1. Clase
+		IPersonaSupplier<String> supplierHO2 = new PersonaSupplierImpl();
+		highOrder.metodo(supplierHO2);
+
+		// 2. Lambdas
+		highOrder.metodo(() -> "1234HO");
+		//3.Referenciados
+		highOrder.metodo(MetodosReferenciados::getIdHO);
+		
+		
+		//2.Consumer
+		// 1. Clase
+		LOG.info("Consumer Clase");
+		IPersonaConsumer<String> consumerHO2 = new PersonaConsumerImpl();
+		highOrder.metodoConsumer(consumerHO2, "Clase consumer");
+		// 2. Lambdas
+		LOG.info("Consummer Lambdas");
+		highOrder.metodoConsumer(cadena -> LOG.info(cadena), "Lambdas Consumer");
+		//3.Referenciados
+		LOG.info("Consumer Referenciados");
+		highOrder.metodoConsumer(MetodosReferenciados::aceptar, "Metodos referenciados Consumer");
+		
+		
+		//3.Predicate
+		//1.Clases
+		LOG.info("Predicate Clases");
+		IPersonaPredicate<Integer>predicate= new PersonaPredicateImpl();
+		highOrder.metodoPredicate(predicate, 7);
+		//2.Lambdas
+		LOG.info("Lambdas Predicate");
+		Integer x=5;
+		highOrder.metodoPredicate(n -> n.compareTo(x)==0 , x);
+		//3.Referenciados
+		LOG.info("Refrenciados Predicate");
+		highOrder.metodoPredicate(MetodosReferenciados::evaluar,6);
+		
+		
+		//4.Function
+		LOG.info("Clases Function");
+		IPersonaFunction<String, Integer>function3= new PersonaFunctionImpl();
+		highOrder.metodoFunction(function3, 2);
+		LOG.info("Lambdas Function");
+		highOrder.metodoFunction(val -> val.toString().concat(" Lambda") , x);
+		LOG.info("Referenciados Function");
+		highOrder.metodoFunction(MetodosReferenciados::aplicar, 6);
+		
+		
+		//5.UnaryOperator
+		
+		LOG.info("Clases Unary Operator");
+		IPersonaUnaryOperator<Double>unary4= new PersonaUnaryOperatorImpl();
+		highOrder.metodoUnary(unary4, 9.2);
+		
+		LOG.info("Lambdas Unary Operator");
+		Double y=8.6;
+		highOrder.metodoUnary(dou-> y*0.2, y);
+		
+		LOG.info("Refeernciados Unary Operator");
+		highOrder.metodoUnary(MetodosReferenciados::aplicar, 8.6);
+
+
+
+	
 	}
 
 }

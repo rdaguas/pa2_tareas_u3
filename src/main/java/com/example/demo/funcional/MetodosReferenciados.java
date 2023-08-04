@@ -11,7 +11,7 @@ public class MetodosReferenciados {
 		return 8;
 	}
 	
-	public  String getIdHO() {
+	public static String getIdHO() {
 		LOG.info("Metodos ReferenciadosHO");
 		return "Robertooo";
 	}
